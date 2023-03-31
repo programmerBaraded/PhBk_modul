@@ -19,16 +19,33 @@ def start ():
                 model.add_contact(contact)
             case 5:
                 if view.show_contacts(pb, 'Телефоннаф книга пуста или не открыта'):
-                    index = view.input_index('Введите номер изменяемого контакта ')
-                    contact = view.change_contact(pb, index)
-                    model.change_contact(contact, index)
-                    view.show_message(f'Контакт {model.get_phone_book()[index - 1].get("name")} успешно изменен!')
+                    index = view.input_index('Введите номер изменяемого контакта: ')
+                    while True:
+                        if 0 < int(index) <= len(pb):
+                            contact = view.change_contact(pb, index)
+                            model.change_contact(contact, index)
+                            view.show_message(
+                                f'Контакт {model.get_phone_book()[index - 1].get("name")} успешно изменен!')
+                            break
+
+                        else:
+                            print(f"Вы выбираете несуществующий контакт, введите от 1 до {len(pb)}")
+                            index = view.input_index("Выберите номер изменяемого контакта: ")
+
 
             case 6:
                 if view.show_contacts(pb, "Телефонная книга пуста или не открыта "):
                     index = view.input_index("Введите номер удаляемого контакта ")
-                    del_contact = model.delete_contact(index)
-                    view.show_message(f"Контакт {del_contact} успешно удален!")
+                    while True:
+                        if 0 < int(index) <= len(pb):
+                            del_contact = model.delete_contact(index)
+                            view.show_message(f"Контакт {del_contact} успешно удален!")
+                            break
+
+                        else:
+                            print(f"Вы выбираете несуществующий контакт, введите от 1 до {len(pb)}")
+                            index = view.input_index("Выберите номер удаляемого контакта: ")
+
 
             case 7:
                 search = view.input_search("Введите искомый объект: ")

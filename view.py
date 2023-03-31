@@ -31,8 +31,8 @@ def add_contact() -> dict:
 def input_search(message):
     return input(message)
 
-def input_index(masage: str):
-    return int(input(masage))
+def input_index(message):
+    return int(input(message))
 
 def change_contact(book: list[dict], index: int):
     print('Введите новые данные или оставьте пустое поле, если нет изменений')
